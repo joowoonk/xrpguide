@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>XRP 가격 알림</title>
+    <style>
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      #price {
+        font-size: 1.5rem;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <center>
+      <h1>📈 실시간 XRP 가격 모니터</h1>
+      <div id="price">XRP 가격 로딩 중...</div>
+      <br />
+      *매도지표 <br />
+      -
+      <a target="_blank" href="https://www.tradingview.com/symbols/BTC.D/"
+        >BTC 하락
+      </a>
+      : 50이하 진입시부터 주의 45진입  매도준비 <br />
+      -
+      <a
+        target="_blank"
+        href="https://cryptoquant.com/asset/btc/chart/market-indicator/mvrv-ratio?window=DAY&sma=0&ema=0&priceScale=log&metricScale=log&chartStyle=line"
+        >BTC MVRV-z
+      </a>
+      : 3.7 이상 주의 --->> 6이상 매도준비<br />
+      <br />
+      -
+      <a
+        target="_blank"
+        href="https://www.blockchaincenter.net/en/altcoin-season-index/"
+        >알트시즌 index
+      </a>
+      : 75 시 매도 준비 <br />
+      <br />
+
+      -
+      <a
+        target="_blank"
+        href="https://www.blockchaincenter.net/en/bitcoin-rainbow-chart/"
+        >BTC rainbow chart
+      </a>
+      <br />
+      Yellow에 진입할때 매도 준비 <br />
+
+      <br />
+      -코인베이스 앱순위: 현재 150위, 상승 (ex.10위권) 하면 매도 준비<br />
+      <br />
+      -김치프리미엄 : 10%이상 매도준비<br />
+    </center>
+    <script>
+      const alertLevels = [5, 10, 15, 20, 25, 30, 50]; // 🔔 알림 받고 싶은 가격
+      let triggered = new Set();
+
+      // 알림 권한 요청
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+
+      async function checkXRPPrice() {
+        try {
+          const response = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=ripple&vs_currencies=usd"
+          );
+          const data = await response.json();
+          const price = data.ripple.usd;
+
+          document.getElementById(
+            "price"
+          ).innerText = `현재 XRP 가격: $${price}`;
+
+          alertLevels.forEach((level) => {
+            if (price >= level && !triggered.has(level)) {
+              new Notification(`🚀 XRP가 $${level} 돌파! 현재가: $${price}`);
+              triggered.add(level);
+            }
+          });
+        } catch (error) {
+          document.getElementById("price").innerText = "❌ 가격 로딩 실패";
+          console.error("가격 확인 실패:", error);
+        }
+      }
+
+      // ⏱ 30초마다 업데이트
+      setInterval(checkXRPPrice, 30000);
+      checkXRPPrice();
+    </script>
+  </body>
+</html>
