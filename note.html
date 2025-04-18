@@ -7,6 +7,8 @@
     <style>
       body {
         font-family: "Arial", sans-serif;
+        background-color: #101010;
+        color: #00ffcc;
         text-align: center;
         padding: 40px 20px;
       }
@@ -22,11 +24,13 @@
       }
 
       .note {
+        color: #bbbbbb;
         font-size: 0.95rem;
         margin-top: 30px;
       }
 
       a {
+        color: #00ffff;
         text-decoration: none;
       }
     </style>
@@ -38,43 +42,37 @@
 
     <div class="note" id="notice">알림 권한 요청 중...</div>
 
-    <br />
-    *매도지표 <br />
-    -
-    <a target="_blank" href="https://www.tradingview.com/symbols/BTC.D/"
-      >BTC 하락
-    </a>
-    : 50이하 진입시부터 주의 45진입  매도준비 <br />
-    -
-    <a
-      target="_blank"
-      href="https://cryptoquant.com/asset/btc/chart/market-indicator/mvrv-ratio?window=DAY&sma=0&ema=0&priceScale=log&metricScale=log&chartStyle=line"
-      >BTC MVRV-z
-    </a>
-    : 3.7 이상 주의 --->> 6이상 매도준비<br />
-    <br />
-    -
-    <a
-      target="_blank"
-      href="https://www.blockchaincenter.net/en/altcoin-season-index/"
-      >알트시즌 index
-    </a>
-    : 75 시 매도 준비 <br />
-    <br />
-
-    -
-    <a
-      target="_blank"
-      href="https://www.blockchaincenter.net/en/bitcoin-rainbow-chart/"
-      >BTC rainbow chart
-    </a>
-    <br />
-    Yellow에 진입할때 매도 준비 <br />
-
-    <br />
-    -코인베이스 앱순위: 현재 150위, 상승 (ex.10위권) 하면 매도 준비<br />
-    <br />
-    -김치프리미엄 : 10%이상 매도준비<br />
+    <div class="note">
+      *매도 지표 참고:<br />
+      -
+      <a href="https://www.tradingview.com/symbols/BTC.D/" target="_blank"
+        >BTC 도미넌스</a
+      >
+      50 이하<br />
+      -
+      <a
+        href="https://cryptoquant.com/asset/btc/chart/market-indicator/mvrv-ratio"
+        target="_blank"
+        >BTC MVRV-Z</a
+      >
+      3.7 이상<br />
+      -
+      <a
+        href="https://www.blockchaincenter.net/en/altcoin-season-index/"
+        target="_blank"
+        >Altseason Index</a
+      >
+      75 이상<br />
+      -
+      <a
+        href="https://www.blockchaincenter.net/en/bitcoin-rainbow-chart/"
+        target="_blank"
+        >BTC Rainbow</a
+      >
+      Yellow 진입 시<br />
+      - 김치 프리미엄 10% 이상<br />
+      - 코인베이스 앱 순위 상승<br />
+    </div>
 
     <script>
       const alertLevels = [10, 30, 50];
